@@ -1,7 +1,7 @@
 import { Random } from './utils/RandomNumbers.js';
 import { addElementToScreen } from './utils/AddElementToScreen.js';
 
-function onStart() {
+function onInit() {
     createStars(2);
 }
 
@@ -78,4 +78,4 @@ function createStars(level) {
     }
 }
 
-onStart();
+onInit();
