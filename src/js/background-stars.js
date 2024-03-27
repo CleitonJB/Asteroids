@@ -2,8 +2,6 @@ import { Random } from './utils/RandomNumbers.js';
 import { addElementToScreen } from './utils/AddElementToScreen.js';
 
 function onStart() {
-    //console.log(Random(1, 100));
-
     createStars(2);
 }
 
@@ -12,7 +10,7 @@ function onStart() {
  * level - Amount of stars. Value between `1` and `5`.
  */
 function createStars(level) {
-    const starSize = 3;
+    const starMinSize = 1, starMaxSize = 3;
     let starsAmount;
 
     switch(level) {
@@ -40,17 +38,25 @@ function createStars(level) {
     for(let i = 1; i <= starsAmount; i++) {
         let starElement = document.createElement("span");
 
+        const starSize = setStarSize();
+
         starElement.style.position = "absolute";
         starElement.style.top = setStarPositionY();
         starElement.style.left = setStarPositionX();
-        starElement.style.width  = `${starSize}px`;  // Random
-        starElement.style.height = `${starSize}px`;  // Random
-        starElement.style.backgroundColor = "white";
+        starElement.style.width  = starSize;
+        starElement.style.height = starSize;
+        starElement.style.backgroundColor = "white"; // Random - Variar do branco (255, 255, 255) até o amarelo (255, 255, 0)
         starElement.style.boxShadow = "0px 0px 5px 2px gray";
         starElement.style.borderRadius = "50%";
         starElement.className = "star";
 
         addElementToScreen(starElement);
+    }
+
+    function setStarSize() {
+        const starSize = Random(starMinSize, starMaxSize);
+
+        return `${starSize}px`;
     }
 
     function setStarPositionX() {
@@ -59,7 +65,7 @@ function createStars(level) {
 
         const starX = Random(minX, screenWidth);
 
-        return `${starX - starSize}px`;
+        return `${starX - starMaxSize}px`;
     }
 
     function setStarPositionY() {
@@ -68,7 +74,7 @@ function createStars(level) {
 
         const starY = Random(minY, screenHeight);
 
-        return `${starY - starSize}px`;
+        return `${starY - starMaxSize}px`;
     }
 }
 
