@@ -1,0 +1,12 @@
+:root {
+    --player-size: 20px;
+}
+
+img#player {
+    position: absolute;
+    top: calc(50% - var(--player-size));
+    left: calc(50% - var(--player-size));
+
+    width: var(--player-size);
+    height: var(--player-size);
+}
